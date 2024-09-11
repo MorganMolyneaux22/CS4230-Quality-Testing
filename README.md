@@ -1,7 +1,7 @@
 # CS4230-Quality-Testing
 
 ## Description 
-CS 4230 Project Repository This workspace is dedicated to storing our project and code for [insert project name here]--anything but a chess program, please!
+CS 4230 Project Repository This workspace is dedicated to storing our project and code for `Project 1-Telephone Switching Simulation`.
 
 ## Code Design
 
