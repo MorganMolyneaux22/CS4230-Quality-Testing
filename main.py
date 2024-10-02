@@ -50,6 +50,7 @@ def main():
     print(" - 'onhook <phone>': Put the phone onhook")
     print(" - 'transfer <phone1> <phone2>': Transfer call from phone1 to phone2")
     print(" - 'conference <phone1> <phone3>': Add phone3 to the call between phone1 and phone2")
+    print(" - 'end_call <phone>': End the current call for the specified phone")
     print(" - 'status': Display the status of all phones")
     print(" - 'quit': Exit the simulator")
     
@@ -105,6 +106,13 @@ def main():
                 phone_call_manager.conference(phone1, phone3)
             except ValueError:
                 print("Invalid command format. Use: conference <phone1> <phone3>")
+                
+        elif command.startswith('end_call'):
+            try:
+                _, phone = command.split()
+                phone_call_manager.end_call(phone)
+            except ValueError:
+                print("Invalid command format. Use: end_call <phone>")
         
         elif command == 'status':
             phone_call_manager.status()
