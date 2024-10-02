@@ -40,16 +40,17 @@ from phone_call_manager import PhoneCallManager
 def main():
     phone_book_file = "phonebook.csv"  # Placeholder, as we simulate the phone book
     phone_book = PhoneBook(phone_book_file)
-    phone_call_manager = PhoneCallManager(phone_book)
+    phone_book.display_phone_book()
+    # phone_call_manager = PhoneCallManager(phone_book)
 
-    # Simulate phone operations:
-    phone_call_manager.offhook("12345")
-    phone_call_manager.call("12345", "54321")
-    phone_call_manager.conference("12345", "67890")  # Adding a third phone for conference
-    phone_call_manager.transfer("12345", "67890")  # Transferring the call to another phone
-    phone_call_manager.handle_illegal_operations("12345")  # Trying an illegal operation
-    phone_call_manager.onhook("12345")
-    phone_call_manager.status()
+    # # Simulate phone operations:
+    # phone_call_manager.offhook("12345")
+    # phone_call_manager.call("12345", "54321")
+    # phone_call_manager.conference("12345", "67890")  # Adding a third phone for conference
+    # phone_call_manager.transfer("12345", "67890")  # Transferring the call to another phone
+    # phone_call_manager.handle_illegal_operations("12345")  # Trying an illegal operation
+    # phone_call_manager.onhook("12345")
+    # phone_call_manager.status()
 
 if __name__ == "__main__":
     main()
