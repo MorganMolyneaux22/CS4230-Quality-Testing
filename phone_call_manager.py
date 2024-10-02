@@ -1,30 +1,18 @@
-# List of class respnsibilities:
-# - Handle  call operations (
-    # dial, 
-    # offhook, 
-    # onhook, 
-    # transfer,
-    # conference
-# - List status of phone (
-    # onhook, 
-    # offhook, 
-    # dialing, 
-    # ringing)
-# - 
 class PhoneCallManager:
     def __init__(self, phone_book):
         self.phone_book = phone_book
         self.calls = {}  # Store active calls with phone numbers as keys
         self.statuses = {}  # Store phone statuses (onhook, offhook, dialing, ringing)
-       
-
-    def initialize_phones_offhook(self):
-        """Sets all phones to offhook by default."""
-        for phone in self.phone_book.phone_book.values():
-            self.statuses[phone] = 'offhook'
-        print("All phones are offhook by default.")
+        self.initialize_phones_onhook() # Set all phones to onhook by default as it won't be offhook until user picks x phone to go offhook
         
+    def initialize_phones_onhook(self):
+        """Sets all phones to onhook by default."""
+        for phone in self.phone_book.phone_book.values():
+            self.statuses[phone] = 'onhook'
+        print("All phones are onhook by default.")
+
     def offhook(self, phone):
+        ''' Sets the status of the phone to offhook '''
         if self.statuses.get(phone) == 'offhook':
             print(f"{phone} is already offhook.")
         else:
@@ -32,6 +20,7 @@ class PhoneCallManager:
             print(f"{phone} hears dialtone.")
 
     def onhook(self, phone):
+        
         if self.statuses.get(phone) == 'onhook':
             print(f"{phone} is already onhook.")
         else:
@@ -48,10 +37,8 @@ class PhoneCallManager:
             print(f"{phone1} hears denial (invalid phone number or name).")
             return
 
-        # Get phone number if name was entered
         phone2_number = self.phone_book.get_phone_by_name(phone2) or phone2
 
-        # Handle busy phone
         if self.statuses.get(phone2_number) == 'offhook':
             print(f"{phone1} hears busy.")
         else:
@@ -59,7 +46,6 @@ class PhoneCallManager:
             self.statuses[phone2_number] = 'ringing'
             print(f"{phone1} hears ringback. {phone2_number} hears ringing.")
 
-            # Simulate the second phone picking up
             self.offhook(phone2_number)
             print(f"{phone1} and {phone2_number} are talking.")
             self.calls[phone1] = phone2_number
@@ -70,7 +56,7 @@ class PhoneCallManager:
             print(f"{phone1} hears silence (not in a call).")
             return
         
-        phone2 = self.calls[phone1]  # Get the existing call partner
+        phone2 = self.calls[phone1]
         if self.statuses.get(phone3) == 'offhook':
             print(f"{phone1} hears busy (phone3 is already offhook).")
             return
@@ -78,7 +64,6 @@ class PhoneCallManager:
         self.statuses[phone3] = 'ringing'
         print(f"{phone1} hears ringback. {phone3} hears ringing.")
         
-        # Simulate phone3 picking up
         self.offhook(phone3)
         print(f"{phone1}, {phone2}, and {phone3} are talking.")
         self.calls[phone1] = (phone2, phone3)
@@ -90,7 +75,7 @@ class PhoneCallManager:
             print(f"{phone1} hears silence (not in a call).")
             return
         
-        phone2 = self.calls[phone1]  # Get the existing call partner
+        phone2 = self.calls[phone1]
         if self.statuses.get(phone3) == 'offhook':
             print(f"{phone1} hears busy (phone3 is already offhook).")
             return
@@ -98,7 +83,6 @@ class PhoneCallManager:
         self.statuses[phone3] = 'ringing'
         print(f"{phone1} hears ringback. {phone3} hears ringing.")
         
-        # Simulate phone3 picking up
         self.offhook(phone3)
         print(f"{phone2} and {phone3} are talking.")
         self.calls[phone2] = phone3
@@ -109,11 +93,11 @@ class PhoneCallManager:
     def end_call(self, phone):
         if phone in self.calls:
             other_party = self.calls.pop(phone)
-            if isinstance(other_party, tuple):  # Conference call
+            if isinstance(other_party, tuple):
                 for party in other_party:
                     self.calls.pop(party, None)
                     self.statuses[party] = 'onhook'
-            else:  # Regular two-party call
+            else:
                 self.calls.pop(other_party, None)
                 self.statuses[other_party] = 'onhook'
             self.statuses[phone] = 'onhook'
@@ -128,7 +112,6 @@ class PhoneCallManager:
             print(f"{phone} hears denial (illegal operation).")
 
     def status(self):
-        # Print the status of each phone
         for phone, status in self.statuses.items():
             call_info = f" and is in a call with {self.calls.get(phone)}" if phone in self.calls else ""
             print(f"{phone} is {status}{call_info}.")
