@@ -16,7 +16,14 @@ class PhoneCallManager:
         self.phone_book = phone_book
         self.calls = {}  # Store active calls with phone numbers as keys
         self.statuses = {}  # Store phone statuses (onhook, offhook, dialing, ringing)
+       
 
+    def initialize_phones_offhook(self):
+        """Sets all phones to offhook by default."""
+        for phone in self.phone_book.phone_book.values():
+            self.statuses[phone] = 'offhook'
+        print("All phones are offhook by default.")
+        
     def offhook(self, phone):
         if self.statuses.get(phone) == 'offhook':
             print(f"{phone} is already offhook.")
