@@ -7,6 +7,7 @@ class PhoneBook:
         The CSV should have two fields: name and phone number.
         """
         self.phone_book = {}  # Dictionary to store name -> phone number mapping
+        
         self.load_phone_book(file_path)
 
     def load_phone_book(self, file_path):
