@@ -13,6 +13,10 @@ class PhoneCallManager:
 
     def offhook(self, phone):
         ''' Sets the status of the phone to offhook '''
+        if not self.phone_book.validate_phone(phone):
+            print(f"{phone} does not exist in the phone book. No action taken.")
+            return
+
         if self.statuses.get(phone) == 'offhook':
             print(f"{phone} is already offhook.")
         else:
@@ -20,6 +24,9 @@ class PhoneCallManager:
             print(f"{phone} hears dialtone.")
 
     def onhook(self, phone):
+        if not self.phone_book.validate_phone(phone):
+            print(f"{phone} does not exist in the phone book. No action taken.")
+            return
         
         if self.statuses.get(phone) == 'onhook':
             print(f"{phone} is already onhook.")

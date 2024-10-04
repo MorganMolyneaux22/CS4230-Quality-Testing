@@ -7,7 +7,7 @@
 # ██           ██          ██ ██           ██ ████  ██ 
 #  ██████ ███████          ██ ███████ ██████   ██████ 
 # 
-# Project Created by: Morgan Molyneaux, Zachary Webb, Caden Black, James West
+# Project Created by: Morgan Molyneaux, Zackary Webb, Caden Black, James West
 # 
 # Purpose:
 # - 
