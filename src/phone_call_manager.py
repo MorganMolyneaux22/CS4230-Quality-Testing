@@ -30,8 +30,7 @@ class PhoneCallManager:
 
     def call(self, phone1, phone2):
         if self.statuses.get(phone1) != "offhook":
-            print(f"{phone1} hears silence (it must be offhook first).")
-            return
+            raise ValueError(f"{phone1} hears silence (it must be offhook first).")
 
         if not (
             self.phone_book.validate_phone(phone2)
