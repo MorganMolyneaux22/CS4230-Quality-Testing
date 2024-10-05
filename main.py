@@ -10,13 +10,15 @@
 # Project Created by: Morgan Molyneaux, Zackary Webb, Caden Black, James West
 # 
 # Purpose:
-# - 
-# -
+# - This program simulates a telephone call system that allows users to dial, transfer,
+#   and conference calls between phones, manage phone statuses, and simulate basic phone
+#   operations for testing and validation.
 #
 # Features:
-# - 
-# - 
-# - 
+# - Load a phone book from a CSV file and simulate interactions between phones.
+# - Manage phone states: offhook, onhook, dialing, ringing, in-call.
+# - Simulate phone call functions such as dialing, transferring, and conferencing calls.
+# - Display the status of all phones in the system.
 #
 ################################################################################
 
@@ -26,7 +28,6 @@ import random
 import string
 
 from src import PhoneBook, PhoneCallManager
-
 # List of BASE phone commands (the foundation of this project)
 # ------ At any instance, the phone might be referenced as the phone number or last name ------
 # - phone dials another phone
