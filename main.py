@@ -21,9 +21,11 @@
 ################################################################################
 
 
+import csv
 import random
 import string
-import csv
+
+from src import PhoneBook, PhoneCallManager
 
 # List of BASE phone commands (the foundation of this project)
 # ------ At any instance, the phone might be referenced as the phone number or last name ------
@@ -32,17 +34,15 @@ import csv
 # - phone goes onhook
 # - phone is transfered to another phone
 # - phone is put into a conference call
-# - list status of phone (onhook, offhook, dialing, ringing))
+# - list status of phone (onhook, offhook, dialing, ringing)
 
-from phone_book import PhoneBook
-from phone_call_manager import PhoneCallManager
 
 def main():
     phone_book_file = "phonebook.csv"  # Load the phone book from a CSV file
     phone_book = PhoneBook(phone_book_file)
     phone_call_manager = PhoneCallManager(phone_book)
 
-    print("Welcome to the Phone Call Simulator!")
+    print("\nWelcome to the Phone Call Simulator!")
     print("Available commands:")
     print(" - 'p': Print the phone book")
     print(" - 'call <phone1> <phone2>': Call from one phone to another")

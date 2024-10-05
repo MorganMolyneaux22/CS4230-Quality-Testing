@@ -1,5 +1,6 @@
 import csv
 
+
 class PhoneBook:
     def __init__(self, file_path):
         """
@@ -7,13 +8,13 @@ class PhoneBook:
         The CSV should have two fields: name and phone number.
         """
         self.phone_book = {}  # Dictionary to store name -> phone number mapping
-        
+
         self.load_phone_book(file_path)
 
     def load_phone_book(self, file_path):
         """Loads phone numbers and names from a CSV file."""
         try:
-            with open(file_path, newline='') as csvfile:
+            with open(file_path, newline="") as csvfile:
                 reader = csv.reader(csvfile)
                 for row in reader:
                     name, phone = row
